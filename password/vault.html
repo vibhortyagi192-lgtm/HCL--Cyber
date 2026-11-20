@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Vault</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eaf0f8;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        textarea {
+            width: 95%;
+            height: 300px;
+            padding: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 6px;
+            background: #173b70;
+            color: white;
+            cursor: pointer;
+        }
+
+        #message {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Welcome to Your Personal Vault!</h1>
+    <p>Write, save and edit your private notes.</p>
+
+    <textarea id="notes" placeholder="Write your notes here..."></textarea>
+
+    <br>
+
+    <button onclick="saveNotes()">Save Notes</button>
+    <button onclick="loadNotes()">Load Notes</button>
+    <button onclick="clearNotes()">Clear Notes</button>
+    <button onclick="logout()">Logout</button>
+
+    <p id="message"></p>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
+
+

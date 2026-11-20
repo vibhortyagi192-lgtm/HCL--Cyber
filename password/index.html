@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>password protected keyvault</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #080d1b, #101d38, #172b50);
+            overflow: hidden;
+            color: white;
+        }
+
+        /* Background effects */
+        .orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+            animation: float 7s infinite alternate ease-in-out;
+        }
+
+        .orb.one {
+            background: #2563eb;
+            top: -100px;
+            left: -80px;
+        }
+
+        .orb.two {
+            background: #9333ea;
+            bottom: -120px;
+            right: -80px;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 40px); }
+        }
+
+        /* Login card */
+        .container {
+            position: relative;
+            width: 390px;
+            max-width: 90%;
+            padding: 42px 35px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 22px;
+            backdrop-filter: blur(18px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            animation: appear 0.8s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lock-icon {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2563eb, #9333ea);
+            border-radius: 22px;
+            font-size: 34px;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        h1 {
+            font-size: 27px;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #b8c5dc;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 22px;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px 65px 16px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        input::placeholder {
+            color: #aab6ca;
+        }
+
+        input:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #93c5fd;
+            cursor: pointer;
+            font-size: 13px;
+            user-select: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #2563eb, #9333ea);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.35);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        #message {
+            min-height: 20px;
+            margin-top: 18px;
+            color: #fca5a5;
+            font-size: 13px;
+        }
+
+        .footer {
+            margin-top: 28px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            color: #91a2bd;
+            font-size: 12px;
+        }
+
+        .footer span {
+            color: #93c5fd;
+        }
+
+        @media (max-width: 450px) {
+            .container {
+                padding: 35px 24px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+
+    <div class="container">
+
+        <div class="lock-icon">🔐</div>
+
+        <h1>PERSONAL VAULT</h1>
+
+        <p class="subtitle">
+            Your private space for thoughts and notes.<br>
+            Enter your password to continue.
+        </p>
+
+        <form id="loginForm">
+
+            <div class="input-box">
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <span
+                    class="toggle-password"
+                    id="togglePassword"
+                    onclick="togglePasswordVisibility()"
+                >SHOW</span>
+            </div>
+
+            <button type="submit">Unlock Vault →</button>
+
+        </form>
+
+        <p id="message"></p>
+
+        <div class="footer">
+            <span>🔒 Secure Personal Storage</span>
+            <br><br>
+            Your privacy matters. Your notes stay yours.
+        </div>
+
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const password = document.getElementById("password");
+            const toggle = document.getElementById("togglePassword");
+
+            if (password.type === "password") {
+                password.type = "text";
+                toggle.textContent = "HIDE";
+            } else {
+                password.type = "password";
+                toggle.textContent = "SHOW";
+            }
+        }
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
